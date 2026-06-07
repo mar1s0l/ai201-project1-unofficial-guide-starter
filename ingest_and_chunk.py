@@ -379,11 +379,11 @@ if __name__ == "__main__":
     #     print(f"  text:  {chunk['text'][:120]}…")
 
     # Print 5 representative chunks
-    import random
-    sample = random.sample(chunks, min(5, len(chunks)))
-    for chunk in sample:
-        print(f"\n[{chunk['chunk_id']}] {chunk['source_name']} — {chunk['description']}")
-        print(f"  {chunk['text']}")
+    # import random
+    # sample = random.sample(chunks, min(5, len(chunks)))
+    # for chunk in sample:
+    #     print(f"\n[{chunk['chunk_id']}] {chunk['source_name']} — {chunk['description']}")
+    #     print(f"  {chunk['text']}")
 
     # Optionally persist to JSON for inspection / hand-off to next pipeline stage
     # out_path = Path("data/chunks.json")

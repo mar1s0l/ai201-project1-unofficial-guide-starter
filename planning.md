@@ -112,7 +112,8 @@ If cost wasn't a constraint, I would consider a model trained on specialized dat
 5. I will use Groq to input the 5 test questions I wrote above requiring it to answer questions as a helpful campus dining assistance, asking it to cite its sources and respond with "I don't have that information" if it can't find references for a query.
 
 **Milestone 3 — Ingestion and chunking:**
-# 5 representative chunks:
+<!--
+5 representative chunks:
 
 [7_24] BruinLife — Top 5 best and worst foods at UCLA dining halls
   . Once you take your first bite, the entire pizza – if you can even call it that – crumbles to dust while the toppings fall onto either your plate, yourself or the floor. The tortilla pizzas are a mess to eat and are never satisfying — that is why they are the worst dish the dining halls have to offer.
@@ -146,10 +147,182 @@ The dining hall food is amazing
 
 My family/cousin’s Wouks visit me just so I can swipe them for Sunday lunch/dinner
 
-Used to be excellent before COVID I hear, but it's kinda mid now imo
+Used to be excellent before COVID I hear, but it's kinda mid now imo -->
 
 ## Total Chunks: 141
 
 **Milestone 4 — Embedding and retrieval:**
+<!-- 
+Query: 'What options are there for vegetarian students?'
+Top 5 results (hybrid BM25 + ChromaDB):
+
+  [1] Reddit — UCLA Dining wiki  (rrf=0.0325)
+       url:  https://www.reddit.com/r/ucla/wiki/ucladining/
+       text: **BPlate**: “Healthy” food. People either love it or hate it. Portions are generally smaller with lots of vegan/vegetarian options. Many like the kale vinaigrette, zucchini brownies, and salmon. Some people bash it for being too healthy but you gotta experiment with dressings, seasonings, etc to really get the good stuff. They have the best quality salmon and some top tier meats. Popular for weekend brunch with usually the longest omelet line. Allergen-friendly pantry at the back for students who need it.
+
+
+
+## To-Go Options
+
+  [2] Reddit — Comprehensive dining hall ranking  (rrf=0.0310)
+       url:  https://www.reddit.com/r/ucla/comments/rvo8oo/comprehensive_dining_hall_ranking/
+       text: Wow this was long, but I'm curious if/why you disagree, and what your favorite places are.
+
+I mean ur vegetarian so u really don’t get to experience half the dishes. The difference between bplate quality meat dishes and De neve quality is absurd. Bplate wins by a landslide in that department
+
+I'm actually transitioning out of being vegetarian, but I haven't tried any meat at bplate, so I'll have to do that. I've had brisket at de Neve, chicken tacos at de Neve, a sandwich at the study, and a few things at epicuria
+
+  [3] Reddit — Gluten intolerant dining  (rrf=0.0310)
+       url:  https://www.reddit.com/r/ucla/comments/15v0jh7/how_rough_is_dining_if_you_are_gluten_intolerant/
+       text: As a vegetarian who doesn't eat eggs (comes as a surprise to Americans because eggs aren't considered vegetarian where I'm from), it was a bit of a nightmare. From going to dining halls daily in the fall last year to like twice this spring, you'll get bored very quickly by the lack of options. They do have a bunch of salad options but the dressings might have eggs
+
+There’s locked gluten free rooms in the dining halls. You have to set it up with ResLife because they’ll add your student ID to be able to open the door.
+
+  [4] Reddit — Comprehensive dining hall ranking  (rrf=0.0303)
+       url:  https://www.reddit.com/r/ucla/comments/rvo8oo/comprehensive_dining_hall_ranking/
+       text: most people i know think epicuria is the best so that's def a popular opinion
+
+personally i think bplate is the most unique, interesting, and worth it heheh
+
+what is the vegetarian version of the sausage sandwich? :0 I’ve never seen that there
+
+they have a vegan sausage and if you put cheese on it, it's vegetarian haha
+
+wow I’ve never tried that! thank u!!
+
+which ones are bufet style?
+
+  [5] Reddit — UCLA Dining wiki  (rrf=0.0296)
+       url:  https://www.reddit.com/r/ucla/wiki/ucladining/
+       text: **Feast**: Asian-inspired food. A bit on the smaller side and always crowded. The meals they serve at lunch are generally better than dinner. Salad bar includes hot white and brown rice daily. Not too many desserts, but the green tea soft serve and pineapple dole whip are to die for. Vegetarian options here are okay.
+
+────────────────────────────────────────────────────────────
+
+Query: 'Is 14P plan good for the semester?'
+Top 5 results (hybrid BM25 + ChromaDB):
+
+  [1] Reddit — Gluten intolerant dining  (rrf=0.0328)
+       url:  https://www.reddit.com/r/ucla/comments/15v0jh7/how_rough_is_dining_if_you_are_gluten_intolerant/
+       text: 19P meant that I always had 40-50 swipes extra every quarter which included swiping friends in everyday and eating all I could (and more). That 40-50 meal difference is the difference between 14P and 19P mathematically speaking so 14P should be more than enough. However for a couple hundred bucks more you do have assurance that you’ll have lots of extra meals and given that you can use swipes in Ackerman now you can easily sell each ticket for $5-7 which means the cost evens out either way
+
+I had 19p as a vego and it was great would, recommend!
+
+14p is the way to go
+
+  [2] Reddit — UCLA Dining wiki  (rrf=0.0304)
+       url:  https://www.reddit.com/r/ucla/wiki/ucladining/
+       text: ## Meal plan information
+
+You can’t select a housing plan without a meal plan. The number means how many meals you get per week. “P” is a premier meal plan. You can swipe for a meal more than once in the designated meal time if you have a “P” plan. There are 5 meal periods each day. If you have an “R” (for regular) plan, then you can only swipe once per meal period.
+
+
+
+## Meal periods
+
+**Weekdays**
+
+* 7am-11am: Breakfast
+
+* 11am-5pm: Lunch
+
+* 5pm-9pm: Dinner
+
+* 9pm-12am: Late night
+
+* 12am-2am: Late late night
+
+**Weekends**
+
+* 7am-9am: Continental breakfast
+
+* 9am-5pm: Brunch
+
+  [3] Reddit — UCLA Dining wiki  (rrf=0.0303)
+       url:  https://www.reddit.com/r/ucla/wiki/ucladining/
+       text: * 12am-2am: Late late night
+
+**Weekends**
+
+* 7am-9am: Continental breakfast
+
+* 9am-5pm: Brunch
+
+* 5pm-9pm: Dinner
+
+* 9pm-12am: Late night
+
+* 12am-2am: Late late night
+
+
+
+## Meal plan options
+*Listed by decreasing cost*
+
+19P → 19 meals per week for you to use however. They roll over each week, but not each quarter
+
+14P → 14 meals per week for you to use however. They roll over each week, but not each quarter
+
+19R →  19 meals per week. The meals reset each week and the unused swipes are lost
+
+  [4] Reddit — Gluten intolerant dining  (rrf=0.0303)
+       url:  https://www.reddit.com/r/ucla/comments/15v0jh7/how_rough_is_dining_if_you_are_gluten_intolerant/
+       text: vegetarian at ucla is amazing they accommodate really well. i can’t speak for gluten intolerance but i know that some dining halls have gluten-free pantries that you can ask for access for
+
+Lots of restaurants on campus like Rende for example will make your food for you gluten free if you let them know and will make sure there isn’t cross contamination, also dining halls and pretty good veg options, but 14p is definitely the way to go unless u eat a lot
+
+As someone who had 19p and eat all my swipes.... It not worth it unless you're some kind of athlete
+
+  [5] Reddit — Gluten intolerant dining  (rrf=0.0301)
+       url:  https://www.reddit.com/r/ucla/comments/15v0jh7/how_rough_is_dining_if_you_are_gluten_intolerant/
+       text: I had 19p as a vego and it was great would, recommend!
+
+14p is the way to go
+
+You need to reach out to the CAE to let them know about being GF if you want access to the GF pantries. Annoyingly, you may have to prove medical necessity. Here is the link to what’s inside the pantry.
+
+You can also look through the menu to see what’s being offered each day and what allergens/dietary restrictions they have.
+
+in general u should be able to piece together a meal at every dining hall, some nights the entrees are better than others but there’s always sides you can eat to form a meal
+
+────────────────────────────────────────────────────────────
+
+Query: 'Which places have long lines usually?'
+Top 5 results (hybrid BM25 + ChromaDB):
+
+  [1] Reddit — Comprehensive dining hall ranking  (rrf=0.0328)
+       url:  https://www.reddit.com/r/ucla/comments/rvo8oo/comprehensive_dining_hall_ranking/
+       text: when are u going to epicuria bc the lines inside are always so long HAHA esp the pizzas and dessert lines
+
+okay i should have mentioned, last quarter I  usually ate lunch at 11 and dinner at 5, so it was usually right when it opened, and the only line was waiting for them to open the doors. I do remember the dessert line being long at times, though.  I also rarely got the pizza.
+
+Lol in that case lines aren't to long anywhere...I eat dinner at 5 usually also!
+
+most people i know think epicuria is the best so that's def a popular opinion
+
+  [2] Reddit — UCLA Dining wiki  (rrf=0.0313)
+       url:  https://www.reddit.com/r/ucla/wiki/ucladining/
+       text: ### Menus for To-Go Options
+
+**Rende**: Rende East is East Asian fast food while Rende West is Mexican fast food. West has the best burritos ever, there are customizable ones or you can choose from a menu. And there’s impossible meat for the vegetarians out there. There's usually a super long line but overall it doesn’t take too long. East is basically panda express. It offers boba, though it can be a bit hard. DO NOT get the pad thai, it's just an orange glob.
+
+  [3] DailyBruin — Schedule changes to strikes - student dining experiences  (rrf=0.0311)
+       url:  https://dailybruin.com/2025/06/08/from-schedule-changes-to-strikes-students-discuss-ucla-dining-experiences
+       text: “Usually, the lines would be shorter because people aren’t willing to walk all the way up and order and get it (food),” Jung said. “Sometimes it’s faster if there’s no mobile ordering.”
+
+UCLA Dining also changed its website at the beginning of spring quarter. UCLA Housing said in an emailed statement that the update was meant to align the design with other university web pages, increase compatibility with a new food management system and improve user experience.
+
+  [4] Reddit — UCLA Dining wiki  (rrf=0.0302)
+       url:  https://www.reddit.com/r/ucla/wiki/ucladining/
+       text: ## To-Go Options
+
+### General Notes
+* All To-Go Places have “meal combos” that equal one swipe. Typically, this includes one entree (i.e. sandwich, mini pizza, etc), one side (chips, whole fruit), and a drink.
+* Specialty beverages (i.e. specialty coffee beverages, smoothies) usually include a pastry for one swipe (not always though).
+* Most To-Go Places have tables within the restaurant that allow you to eat there. As the name suggests, you can also take your food out of the restaurant and eat at other places.
+
+  [5] Reddit — Comprehensive dining hall ranking  (rrf=0.0294)
+       url:  https://www.reddit.com/r/ucla/comments/rvo8oo/comprehensive_dining_hall_ranking/
+       text: 6. B CAFE
+Okay, so it's not that I dislike b cafe....I want to like it. But I wish the sandwiches were a little more customizable. There's only one vegetarian sandwich, and I personally don't love the cookies as of late. I also don't like how much sauce goes into them sometimes, although I know most people aren't bothered by sauce on their food. The lines are often too long for what you get, but it's good for the occasional sandwich craving. -->
 
 **Milestone 5 — Generation and interface:**
