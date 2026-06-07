@@ -9,111 +9,107 @@
 
 ## Domain
 
-<!-- What domain did you choose? Why is this knowledge valuable and hard to find through official channels? -->
+My system will cover student reviews, and food rankings for UCLA dining halls. This knowledge is valuable because it teaches students how to get the best food for their dietary needs and get their money’s worth out of expensive meal plans. Official university websites only post basic menus and hours, leaving out the honest student reviews, complaints, and tips needed to navigate the dining system.
 
 ---
 
 ## Documents
 
-<!-- List your specific sources: URLs, subreddit names, forum threads, or file descriptions.
-     Aim for at least 10 sources that together cover different subtopics or perspectives within your domain. -->
-
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 | Reddit | Forum | https://www.reddit.com/r/ucla/wiki/ucladining/ |
+| 2 | Reddit | Forum | https://www.reddit.com/r/ucla/comments/123arn7/hows_the_food_at_ucla/ |
+| 3 | Reddit | Forum | https://www.reddit.com/r/ucla/comments/15v0jh7/how_rough_is_dining_if_you_are_gluten_intolerant/ |
+| 4 | Reddit | Forum | https://www.reddit.com/r/ucla/comments/rvo8oo/comprehensive_dining_hall_ranking/ |
+| 5 | Reddit | Forum | https://www.reddit.com/r/ucla/comments/1kl3qwz/meals_as_a_commuter/ |
+| 6 | BruinLife | Article | https://bruinlife.com/where-to-eat-at-ucla-meal-plans-dining-halls-and-campus-spots/ |
+| 7 | BruinLife | Article | https://bruinlife.com/top-5-best-and-worst-foods-at-the-ucla-dining-halls/ |
+| 8 | DailyBruin | Article | https://dailybruin.com/2025/06/08/from-schedule-changes-to-strikes-students-discuss-ucla-dining-experiences|
+| 9 | DailyBruin | Article | https://dailybruin.com/2026/01/20/opinion-students-with-dietary-restrictions-deserve-accurate-information-from-ucla-dining |
+| 10 | SpoonUniversity | Article | https://spoonuniversity.com/school/ucla/why-themed-dinners-made-ucla-s-dining-halls/ |
 
 ---
 
 ## Chunking Strategy
 
-<!-- How will you split documents into chunks?
-     State your chunk size (in tokens or characters), overlap size, and explain why those
-     numbers fit the structure of your documents.
-     A review-heavy corpus warrants different chunking than a long FAQ. -->
-
 **Chunk size:**
+600 characters
 
 **Overlap:**
+100 characters
 
 **Reasoning:**
+I believe a recursive chunking strategy makes the most sense due to the format of my sources. Reddit pages and student articles are structured in a predictable way, so chunking from natural structure makes sense. A good chunk size is 600 characters as that covers students' posts/answers on Reddit that are shorter or longer. It's also appropriate for the articles I am sourcing since those are longer but each paragraph is not significantly long. I believe an appropriate overlap is 100 characters, as this should cover any thoughts carrying over in both forum and article sources.
 
 ---
 
 ## Retrieval Approach
 
-<!-- Which embedding model are you using (e.g., all-MiniLM-L6-v2 via sentence-transformers)?
-     How many chunks will you retrieve per query (top-k)?
-     If you were deploying this for real users and cost wasn't a constraint, what tradeoffs
-     would you weigh in choosing a different embedding model — context length, multilingual
-     support, accuracy on domain-specific text, latency? -->
-
 **Embedding model:**
+bge-small-en-v1.5 via SentenceTransformers
 
 **Top-k:**
+5
 
 **Production tradeoff reflection:**
+If cost wasn't a constraint, I would consider a model that was not just trained on general internet data as well as model not strictly optimized for English text. Students' slang which is different across campuses and is worth considering in other languages is not really considered by this model as far as I'm aware. Additionally, students make similar posts on Reddit all the time, so being able to embed all those threads with lower latency would help round out responses rather than focusing on selecting sources that are more unique.
 
 ---
 
 ## Evaluation Plan
 
-<!-- List your 5 test questions with their expected correct answers.
-     Questions should be specific enough that you can judge whether the system's response
-     is right or wrong. "What are good dining halls?" is too vague.
-     "What do students say about wait times at [dining hall name] during lunch?" is testable. -->
-
 | # | Question | Expected answer |
 |---|----------|-----------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
+| 1 | What options are there for vegetarian students? | The Study, B Plate, Rende West, and B Cafe. |
+| 2 | Is 14P plan good for the semester? | It is the way to go unless you eat a lot as it gives two meals per day. |
+| 3 | Which places have long lines usually? | The Study, B Cafe, B Plate, and food trucks.  |
+| 4 | Are dishes properly labeled for food allergens? | Some dishes are mislabeled on in-house signs that are properly labeled on the dining website. |
+| 5 | Can I take food to go from the dining halls? | All food must be consumed within the dining halls except for one whole fruit or dessert. |
 
 ---
 
 ## Anticipated Challenges
 
-<!-- What could go wrong? Name at least two specific risks with reasoning.
-     Consider: noisy or inconsistent documents, missing source attribution, off-topic
-     retrieval, chunks that split key information across boundaries. -->
+1. I have some concerns about chunk size since some parts of the documents are for sure a lot longer than 600 characters and I can't guarantee that 100 characters overlap is enough, especially when considering misformatted helpful information.
 
-1.
-
-2.
+2. Since my sources are from forums and articles written by students and their opinions are completely subjective, there might be problems with missing attributions and there might be some hallucinations.
 
 ---
 
 ## Architecture
 
-<!-- Draw a diagram of your pipeline showing the five stages:
-     Document Ingestion → Chunking → Embedding + Vector Store → Retrieval → Generation
-     Label each stage with the tool or library you're using.
-     You can use ASCII art, a Mermaid diagram, or embed a sketch as an image.
-     You'll use this diagram as context when prompting AI tools to implement each stage. -->
+[1. Document Ingestion] 
+ └── Python requests / URL manipulation + copy/paste
+       │
+       ▼
+[2. Chunking]
+ └── LangChain (RecursiveCharacterTextSplitter) + BM25 Engine
+       │
+       ▼
+[3. Embedding + Vector Store] 
+ └── BAAI/bge-small-en-v1.5 (via SentenceTransformers) + ChromaDB
+       │
+       ▼
+[4. Retrieval] 
+ └── Hybrid Search
+       │
+       ▼
+[5. Generation] 
+ └── Groq
 
 ---
 
 ## AI Tool Plan
 
-<!-- For each part of the pipeline below, describe:
-     - Which AI tool you plan to use (Claude, Copilot, ChatGPT, etc.)
-     - What you'll give it as input (which sections of this planning.md, which requirements)
-     - What you expect it to produce
-     - How you'll verify the output matches your spec
+1. I will ask Gemini to help me clean the Reddit sources with a Python script utilizing the requests library. I will ask it to help me clean data after it is parsed from JSON if needed. I will give it the documents section of this planning.md. I expect the output to be cleaned up documents ready for chunking. I will look over these myself.
 
-     "I'll use AI to help me code" is not a plan.
-     "I'll give Claude my Chunking Strategy section and ask it to implement chunk_text()
-     with my specified chunk size and overlap" is a plan. -->
+2. I'll give Claude my Chunking Strategy section and ask it to implement chunk_text() with LangChain with my specified chunk size and overlap. I will give it the chunking section of this planning.md. I expect a method that will return chunks of my ingested resources. I will scan to make sure chunks make sense. I will ask it to use rank_bm25 engine for the keyword search.
+
+3. I will ask Claude to help me call the embedder on my chunks as well as append context headers to chunks before running them through the embedder to add useful context. Then to make sure the results are stored in my ChromaDB. I will then ask it to provide a small script to display what is in the database so I can take a look at the embeddings.
+
+4. I will ask Claude to help me write hybrid_search() to blend BM25 and Vector Search scores to return the top k matching chunks based on my specified query and k value which I previously set to 5.
+
+5. I will use Groq to input the 5 test questions I wrote above requiring it to answer questions as a helpful campus dining assistance, asking it to cite its sources and respond with "I don't have that information" if it can't find references for a query.
 
 **Milestone 3 — Ingestion and chunking:**
 
