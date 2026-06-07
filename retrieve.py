@@ -302,6 +302,43 @@ class HybridRetriever:
             print(f"       url:  {m['url']}")
             print(f"       text: {hit['text']}\n")
         return results
+    
+    
+    # ---------------------------------------------------------------------------
+    # Hybrid Search Comparison
+    # ---------------------------------------------------------------------------
+
+    def compare_search_methods(self, query: str) -> dict:
+        """
+        Run BM25, dense, and hybrid search separately and return all three
+        result sets for comparison.
+        """
+        dense_hits  = self._dense_search(query)[:5]
+        sparse_hits = self._sparse_search(query)[:5]
+        hybrid_hits = self.retrieve(query)
+
+        return {
+            "query":   query,
+            "dense":   dense_hits,
+            "sparse":  sparse_hits,
+            "hybrid":  hybrid_hits,
+        }
+
+    def print_comparison(self, query: str) -> None:
+        results = self.compare_search_methods(query)
+
+        print(f"\n{'='*60}")
+        print(f"Query: {query!r}")
+        print(f"{'='*60}")
+
+        for method in ["dense", "sparse", "hybrid"]:
+            print(f"\n--- {method.upper()} ---")
+            for i, hit in enumerate(results[method], start=1):
+                m = hit["metadata"]
+                score = hit.get("rrf_score", hit.get("score", "n/a"))
+                print(f"  [{i}] {m['source_name']} — {m['description']}")
+                print(f"       score: {score:.4f}")
+                print(f"       text:  {hit['text'][:100]}…")
 
 
 # ---------------------------------------------------------------------------
@@ -312,11 +349,11 @@ if __name__ == "__main__":
     retriever = HybridRetriever()
 
     test_queries = [
-        "What options are there for vegetarian students?",
-        "Is 14P plan good for the semester?",
-        "Which places have long lines usually?",
+        "Which dining hall hosted the Harry Potter dinner?",
+        "What are good options for students with dietary restrictions?",
+        "How do meal plans work for commuters?",
     ]
 
     for q in test_queries:
-        retriever.retrieve_and_print(q)
+        retriever.print_comparison(q)
         print("─" * 60)

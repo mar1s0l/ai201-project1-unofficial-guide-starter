@@ -94,7 +94,13 @@ If cost wasn't a constraint, I would consider a model trained on specialized dat
 
 **Stretch Features**
 1. Hybrid Search
+
+   - implemented from the start
+   - BM25 and semantic scores are combined via Reciprocal Rank Fusion
+
 2. Multi-turn queries
+
+   - maintain a conversation history limited to 4 history tokens
 ---
 
 ## AI Tool Plan
