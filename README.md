@@ -81,8 +81,8 @@ I also make sure that if no relevant chunks are retrieved via hybrid search, the
 |---|----------|-----------------|------------------------------|-------------------|-------------------|
 | 1 | What options are there for vegetarian students? | The Study, B Plate, Rende West, and B Cafe.| There are vegetarian options at BPlate, with many liking the kale vinaigrette, zucchini brownies, and they have a vegan sausage that can be made vegetarian by adding cheese. Feast also has okay vegetarian options. Additionally, salad options are available, but dressings might have eggs. | Relevant | Accurate |
 | 2 | Is 14P plan good for the semester? | It is the way to go unless you eat a lot as it gives two meals per day. | Yes, 14P is recommended by multiple users. | Relevant | Accurate |
-| 3 | Which places have long lines usually? | The Study, B Cafe, B Plate, and food trucks. | Epicuria, Rende, and B Cafe usually have long lines. | Relevant | Partiall accurate |
-| 4 | Are dishes properly labeled for food allergens? | Some dishes are mislabeled on in-house signs that are properly labeled on the dining website. | No | Relevant | Partiall accurate |
+| 3 | Which places have long lines usually? | The Study, B Cafe, B Plate, and food trucks. | Epicuria, Rende, and B Cafe usually have long lines. | Relevant | Partially accurate |
+| 4 | Are dishes properly labeled for food allergens? | Some dishes are mislabeled on in-house signs that are properly labeled on the dining website. | No | Relevant | Partially accurate |
 | 5 | Can I take food to go from the dining halls? | All food must be consumed within the dining halls except for one whole fruit or dessert. | No, all food must be consumed within the dining hall, although you are allowed to take out one whole fruit or dessert. | Relevant | Accurate |
 
 **Retrieval quality:** Relevant / Partially relevant / Off-target  
