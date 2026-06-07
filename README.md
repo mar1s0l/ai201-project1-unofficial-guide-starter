@@ -9,31 +9,24 @@
 
 ## Domain
 
-<!-- What topic or category of knowledge does your system cover?
-     Why is this knowledge valuable, and why is it hard to find through official channels?
-     Example: "Student reviews of CS professors at [university] — useful because official
-     course descriptions don't reflect teaching style, exam difficulty, or workload." -->
+My system will cover student reviews, and food rankings for UCLA dining halls. This knowledge is valuable because it teaches students how to get the best food for their dietary needs and get their money’s worth out of expensive meal plans. Official university websites only post basic menus and hours, leaving out the honest student reviews, complaints, and tips needed to navigate the dining system.
 
 ---
 
 ## Document Sources
 
-<!-- List every source you collected documents from.
-     Be specific: include URLs, subreddit names, forum thread titles, or file names.
-     Aim for variety — sources that together cover different subtopics or perspectives. -->
-
 | # | Source | Type | URL or file path |
 |---|--------|------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 | Reddit | Forum | https://www.reddit.com/r/ucla/wiki/ucladining/ |
+| 2 | Reddit | Forum | https://www.reddit.com/r/ucla/comments/123arn7/hows_the_food_at_ucla/ |
+| 3 | Reddit | Forum | https://www.reddit.com/r/ucla/comments/15v0jh7/how_rough_is_dining_if_you_are_gluten_intolerant/ |
+| 4 | Reddit | Forum | https://www.reddit.com/r/ucla/comments/rvo8oo/comprehensive_dining_hall_ranking/ |
+| 5 | Reddit | Forum | https://www.reddit.com/r/ucla/comments/1kl3qwz/meals_as_a_commuter/ |
+| 6 | BruinLife | Article | https://bruinlife.com/where-to-eat-at-ucla-meal-plans-dining-halls-and-campus-spots/ |
+| 7 | BruinLife | Article | https://bruinlife.com/top-5-best-and-worst-foods-at-the-ucla-dining-halls/ |
+| 8 | DailyBruin | Article | https://dailybruin.com/2025/06/08/from-schedule-changes-to-strikes-students-discuss-ucla-dining-experiences|
+| 9 | DailyBruin | Article | https://dailybruin.com/2026/01/20/opinion-students-with-dietary-restrictions-deserve-accurate-information-from-ucla-dining |
+| 10 | CollegeConfidential | Forum | https://talk.collegeconfidential.com/t/food-at-ucla/48394/66?page=3 |
 
 ---
 
