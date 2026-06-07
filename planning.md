@@ -83,7 +83,7 @@ If cost wasn't a constraint, I would consider a model that was not just trained 
        │
        ▼
 [2. Chunking]
- └── LangChain (RecursiveCharacterTextSplitter) + BM25 Engine
+ └── LangChain (RecursiveCharacterTextSplitter)
        │
        ▼
 [3. Embedding + Vector Store] 
@@ -101,9 +101,9 @@ If cost wasn't a constraint, I would consider a model that was not just trained 
 
 ## AI Tool Plan
 
-1. I will ask Gemini to help me clean the Reddit sources with a Python script utilizing the requests library. I will ask it to help me clean data after it is parsed from JSON if needed. I will give it the documents section of this planning.md. I expect the output to be cleaned up documents ready for chunking. I will look over these myself.
+1. I will ask Claude to help me clean the Reddit sources with a Python script utilizing the requests library. I will ask it to help me clean data after it is parsed from JSON if needed. I will give it the documents section of this planning.md. I expect the output to be cleaned up documents ready for chunking. I will look over these myself.
 
-2. I'll give Claude my Chunking Strategy section and ask it to implement chunk_text() with LangChain with my specified chunk size and overlap. I will give it the chunking section of this planning.md. I expect a method that will return chunks of my ingested resources. I will scan to make sure chunks make sense. I will ask it to use rank_bm25 engine for the keyword search.
+2. I'll give Claude my Chunking Strategy section and ask it to implement chunk_text() with LangChain with my specified chunk size and overlap. I will give it the chunking section of this planning.md. I expect a method that will return chunks of my ingested resources. I will scan to make sure chunks make sense. 
 
 3. I will ask Claude to help me call the embedder on my chunks as well as append context headers to chunks before running them through the embedder to add useful context. Then to make sure the results are stored in my ChromaDB. I will then ask it to provide a small script to display what is in the database so I can take a look at the embeddings.
 
@@ -112,6 +112,43 @@ If cost wasn't a constraint, I would consider a model that was not just trained 
 5. I will use Groq to input the 5 test questions I wrote above requiring it to answer questions as a helpful campus dining assistance, asking it to cite its sources and respond with "I don't have that information" if it can't find references for a query.
 
 **Milestone 3 — Ingestion and chunking:**
+# 5 representative chunks:
+
+[7_24] BruinLife — Top 5 best and worst foods at UCLA dining halls
+  . Once you take your first bite, the entire pizza – if you can even call it that – crumbles to dust while the toppings fall onto either your plate, yourself or the floor. The tortilla pizzas are a mess to eat and are never satisfying — that is why they are the worst dish the dining halls have to offer.
+
+[6_0] BruinLife — Where to eat at UCLA - meal plans & dining halls
+  BruinLife
+
+Image via Daily Bruin Archives
+New Student Guide
+Where to eat at UCLA: Meal plans, dining halls and campus spots
+written by Victoria Sitter September 24, 2025
+Starting college means one big question: Where and how do I eat? Luckily, UCLA offers a variety of meal plans designed to fit different lifestyles and appetites, so you won’t have to worry about going hungry between classes.
+
+[6_14] BruinLife — Where to eat at UCLA - meal plans & dining halls
+  Making eating at UCLA work for you
+With so many options available, finding your favorite spots and meal rhythm might take a little time, and that’s totally okay! Whether you’re fueling up for a big study session or grabbing a quick snack between classes, UCLA’s diverse dining scene has something for every appetite and schedule. Don’t hesitate to explore different dining halls and cafés to discover what fits your taste and lifestyle best.
+
+[1_3] Reddit — UCLA Dining wiki
+  You are able to change your meal plan at the end of a quarter. There is a fee. You will lose more money if you downgrade than if you upgrade.
+
+Selling Swipes
+
+Students who live off campus do not have meal plans but may want to eat in the dining halls. As such, you will often find people outside dining halls asking if anyone is selling swipes. There is also a Facebook Group (UCLA Swipe Swap) for this same purpose.
+
+Students with premier meal plans may choose to swipe in these people in exchange for payment.
+
+[2_6] Reddit — How's the food at UCLA?
+  Viruses are often the culprit from having some many shared touch points at the dining hall, not the food. It happened at my work and the health department did a thorough investigation. Also, even a little soap left on a cup gives you the runs, so people often blame the food when it could have been 100 other things
+
+The dining hall food is amazing
+
+My family/cousin’s Wouks visit me just so I can swipe them for Sunday lunch/dinner
+
+Used to be excellent before COVID I hear, but it's kinda mid now imo
+
+## Total Chunks: 141
 
 **Milestone 4 — Embedding and retrieval:**
 
