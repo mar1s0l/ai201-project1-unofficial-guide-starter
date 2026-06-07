@@ -1,8 +1,5 @@
 # Project 1 Planning: The Unofficial Guide
 
-> Update the Retrieval Approach and Chunking Strategy sections if you change your approach during implementation.
-> Update this file before starting any stretch features.
-
 ---
 
 ## Domain
@@ -89,12 +86,15 @@ If cost wasn't a constraint, I would consider a model trained on specialized dat
        │
        ▼
 [4. Retrieval] 
- └── Hybrid Search
+ └── Hybrid Search (BM25 + Vector Search)
        │
        ▼
 [5. Generation] 
  └── Groq (llama-3.3-70b-versatile)
 
+**Stretch Features**
+1. Hybrid Search
+2. Multi-turn queries
 ---
 
 ## AI Tool Plan
@@ -108,6 +108,8 @@ If cost wasn't a constraint, I would consider a model trained on specialized dat
 4. I will ask Claude to help me write hybrid_search() to blend BM25 and Vector Search scores to return the top k matching chunks based on my specified query and k value which I previously set to 5.
 
 5. I will use Claude for a Groq interface to input the 5 test questions I wrote above requiring it to answer questions as a helpful campus dining assistance, asking it to cite its sources and respond with "I don't have that information" if it can't find references for a query.
+
+For multi-turn queries, I asked Claude to create a data structure to keep track of chat history. I asked it to help me cap the history length to avoid sending a lot of tokens to Groq. 
 
 **Milestone 3 — Ingestion and chunking:**
 

@@ -116,7 +116,7 @@ I believe the core issue is that 600 character chunks were limiting for that spe
 The spec was helpful in reinforcing the concepts learned in class to implement this project. It was really helpful to have the information written out clearly. I was able to easily use AI assistance using the spec document to implement features and receive helpful explanations based on what I was hoping to do with my RAG pipeline.
 
 **One way your implementation diverged from the spec, and why:**
-My implementation did not diverge from the spec aside from adding stretch features. I will note I was going to use a different embedding model, but defaulted to the recommended for the sake of simplicty.
+My implementation did not diverge from the spec aside from adding stretch features. I did begin with Hybrid Search from the start from looking at the slides. I was also going to use a different embedding model, but defaulted to the recommended for the sake of simplicty.
 
 ---
 

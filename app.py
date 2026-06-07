@@ -8,7 +8,7 @@ Run:
 """
 
 import gradio as gr
-from query import ask
+from query import ask, reset_conversation
 
 
 def handle_query(question: str) -> tuple[str, str]:
@@ -18,6 +18,10 @@ def handle_query(question: str) -> tuple[str, str]:
     result = ask(question)
     sources = "\n".join(f"• {s}" for s in result["sources"])
     return result["answer"], sources
+
+def handle_reset():
+    reset_conversation()
+    return "", "", ""
 
 # if __name__=="__main__":
 #     print(handle_query("Are dishes properly labeled for food allergens?"))
@@ -37,11 +41,14 @@ with gr.Blocks(title="UCLA Dining Assistant") as demo:
         placeholder="e.g. Which dining hall has the best vegan options?",
     )
     btn = gr.Button("Ask", variant="primary")
+    
+    reset_btn = gr.Button("Reset conversation")
 
     answer = gr.Textbox(label="Answer", lines=8)
     sources = gr.Textbox(label="Retrieved from", lines=4)
 
     btn.click(handle_query, inputs=inp, outputs=[answer, sources])
     inp.submit(handle_query, inputs=inp, outputs=[answer, sources])
+    reset_btn.click(handle_reset, outputs=[inp, answer, sources])
 
 demo.launch()

@@ -45,6 +45,7 @@ Be concise and direct."""
 load_dotenv()
 _retriever = HybridRetriever()
 _groq = Groq(api_key=os.getenv("GROQ_API_KEY"))
+MAX_HISTORY_TURNS = 4
 
 
 # ---------------------------------------------------------------------------
@@ -101,6 +102,8 @@ def _extract_sources(chunks: list[dict]) -> list[str]:
 # Public interface
 # ---------------------------------------------------------------------------
 
+_conversation_history = []
+
 def ask(question: str) -> dict[str, str | list[str]]:
     """
     End-to-end RAG query.
@@ -116,6 +119,8 @@ def ask(question: str) -> dict[str, str | list[str]]:
         "answer"  : str         — LLM answer grounded in retrieved context
         "sources" : list[str]   — deduplicated source attribution strings
     """
+    # global _conversation_history
+    
     # 1. Retrieve relevant chunks via hybrid search
     chunks = _retriever.retrieve(question)
 
@@ -127,6 +132,12 @@ def ask(question: str) -> dict[str, str | list[str]]:
 
     # 2. Build prompt
     prompt = _build_prompt(question, chunks)
+    
+    # 2.5 Add the new user turn to history, but trim history first
+    if len(_conversation_history) >= MAX_HISTORY_TURNS * 2:
+        _conversation_history[:] = _conversation_history[-(MAX_HISTORY_TURNS * 2):]
+        
+    _conversation_history.append({"role": "user", "content": prompt})
 
     # 3. Call Groq
     response = _groq.chat.completions.create(
@@ -134,7 +145,7 @@ def ask(question: str) -> dict[str, str | list[str]]:
         max_tokens=MAX_TOKENS,
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user",   "content": prompt},
+            *_conversation_history,
         ],
     )
 
@@ -146,6 +157,9 @@ def ask(question: str) -> dict[str, str | list[str]]:
         answer_text = raw_answer.split("Answer:")[-1].split("Sources:")[0].strip()
     else:
         answer_text = raw_answer
+        
+    # 4.5 Add the LLM's turn to history
+    _conversation_history.append({"role": "assistant", "content": answer_text})
 
     # 5. Use our own source list (more reliable than parsing the LLM output)
     sources = _extract_sources(chunks)
@@ -154,3 +168,6 @@ def ask(question: str) -> dict[str, str | list[str]]:
         "answer": answer_text,
         "sources": sources,
     }
+
+def reset_conversation():
+    _conversation_history.clear()
