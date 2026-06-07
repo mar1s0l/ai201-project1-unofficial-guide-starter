@@ -95,7 +95,7 @@ If cost wasn't a constraint, I would consider a model trained on specialized dat
        │
        ▼
 [5. Generation] 
- └── Groq
+ └── Groq (llama-3.3-70b-versatile)
 
 ---
 
@@ -105,11 +105,11 @@ If cost wasn't a constraint, I would consider a model trained on specialized dat
 
 2. I'll give Claude my Chunking Strategy section and ask it to implement chunk_text() with LangChain with my specified chunk size and overlap. I will give it the chunking section of this planning.md. I expect a method that will return chunks of my ingested resources. I will scan to make sure chunks make sense. 
 
-3. I will ask Claude to help me call the embedder on my chunks as well as append context headers to chunks before running them through the embedder for attributions. Then to make sure the results are stored in my ChromaDB. I will then ask it to provide a small script to display what is in the database so I can take a look at the embeddings.
+3. I will ask Claude to help me call the embedder on my chunks as well as append context headers to chunks before running them through the embedder for attributions. Then to make sure the results are stored in my ChromaDB.
 
 4. I will ask Claude to help me write hybrid_search() to blend BM25 and Vector Search scores to return the top k matching chunks based on my specified query and k value which I previously set to 5.
 
-5. I will use Groq to input the 5 test questions I wrote above requiring it to answer questions as a helpful campus dining assistance, asking it to cite its sources and respond with "I don't have that information" if it can't find references for a query.
+5. I will use Claude for a Groq interface to input the 5 test questions I wrote above requiring it to answer questions as a helpful campus dining assistance, asking it to cite its sources and respond with "I don't have that information" if it can't find references for a query.
 
 **Milestone 3 — Ingestion and chunking:**
 <!--
@@ -326,3 +326,11 @@ UCLA Dining also changed its website at the beginning of spring quarter. UCLA Ho
 Okay, so it's not that I dislike b cafe....I want to like it. But I wish the sandwiches were a little more customizable. There's only one vegetarian sandwich, and I personally don't love the cookies as of late. I also don't like how much sauce goes into them sometimes, although I know most people aren't bothered by sauce on their food. The lines are often too long for what you get, but it's good for the occasional sandwich craving. -->
 
 **Milestone 5 — Generation and interface:**
+<!-- Loading embedding model: all-MiniLM-L6-v2
+Connecting to ChromaDB at: data/chroma_db
+Loading BM25 index from data/bm25_index.pkl
+✓ HybridRetriever ready
+
+('No', '• DailyBruin — Opinion: dietary restrictions deserve accurate info (https://dailybruin.com/2026/01/20/opinion-students-with-dietary-restrictions-deserve-accurate-information-from-ucla-dining)\n• BruinLife — Top 5 best and worst foods at UCLA dining halls (https://bruinlife.com/top-5-best-and-worst-foods-at-the-ucla-dining-halls/)\n• Reddit — Gluten intolerant dining (https://www.reddit.com/r/ucla/comments/15v0jh7/how_rough_is_dining_if_you_are_gluten_intolerant/)')
+('No, all food must be consumed within the dining hall, although you are allowed to take out one whole fruit or dessert.', '• Reddit — UCLA Dining wiki (https://www.reddit.com/r/ucla/wiki/ucladining/)\n• Reddit — Meals as a commuter (https://www.reddit.com/r/ucla/comments/1kl3qwz/meals_as_a_commuter/)')
+("I don't have enough information to answer that.", '• BruinLife — Top 5 best and worst foods at UCLA dining halls (https://bruinlife.com/top-5-best-and-worst-foods-at-the-ucla-dining-halls/)\n• Reddit — Meals as a commuter (https://www.reddit.com/r/ucla/comments/1kl3qwz/meals_as_a_commuter/)\n• Reddit — Gluten intolerant dining (https://www.reddit.com/r/ucla/comments/15v0jh7/how_rough_is_dining_if_you_are_gluten_intolerant/)') -->
