@@ -105,7 +105,7 @@ If cost wasn't a constraint, I would consider a model that was not just trained 
 
 2. I'll give Claude my Chunking Strategy section and ask it to implement chunk_text() with LangChain with my specified chunk size and overlap. I will give it the chunking section of this planning.md. I expect a method that will return chunks of my ingested resources. I will scan to make sure chunks make sense. 
 
-3. I will ask Claude to help me call the embedder on my chunks as well as append context headers to chunks before running them through the embedder to add useful context. Then to make sure the results are stored in my ChromaDB. I will then ask it to provide a small script to display what is in the database so I can take a look at the embeddings.
+3. I will ask Claude to help me call the embedder on my chunks as well as append context headers to chunks before running them through the embedder for attributions. Then to make sure the results are stored in my ChromaDB. I will then ask it to provide a small script to display what is in the database so I can take a look at the embeddings.
 
 4. I will ask Claude to help me write hybrid_search() to blend BM25 and Vector Search scores to return the top k matching chunks based on my specified query and k value which I previously set to 5.
 
