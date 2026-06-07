@@ -46,13 +46,13 @@ I believe a recursive chunking strategy makes the most sense due to the format o
 ## Retrieval Approach
 
 **Embedding model:**
-bge-small-en-v1.5 via SentenceTransformers
+all-MiniLM-L6-v2 via SentenceTransformers
 
 **Top-k:**
 5
 
 **Production tradeoff reflection:**
-If cost wasn't a constraint, I would consider a model that was not just trained on general internet data as well as model not strictly optimized for English text. Students' slang which is different across campuses and is worth considering in other languages is not really considered by this model as far as I'm aware. Additionally, students make similar posts on Reddit all the time, so being able to embed all those threads with lower latency would help round out responses rather than focusing on selecting sources that are more unique.
+If cost wasn't a constraint, I would consider a model trained on specialized data rather than just general English internet text. This current model can miss campus-specific slang and struggle with other languages. Additionally, students frequently post similar topics on Reddit. An upgraded pipeline with higher throughput would allow us to ingest and embed those massive message threads efficiently, giving us a denser pool of redundant student discussions to draw from rather than just filtering for highly unique sources.
 
 ---
 
@@ -87,7 +87,7 @@ If cost wasn't a constraint, I would consider a model that was not just trained 
        │
        ▼
 [3. Embedding + Vector Store] 
- └── BAAI/bge-small-en-v1.5 (via SentenceTransformers) + ChromaDB
+ └── all-MiniLM-L6-v2 (via SentenceTransformers) + ChromaDB
        │
        ▼
 [4. Retrieval] 
