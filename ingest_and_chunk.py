@@ -127,7 +127,7 @@ SOURCES: list[dict] = [
         "source_name": "SpoonUniversity",
         "description": "Why themed dinners made UCLA dining halls great",
         "url": "https://spoonuniversity.com/school/ucla/why-themed-dinners-made-ucla-s-dining-halls/",
-        "local_path": "data/spoon_10.txt",
+        "local_path": "data/spoonuniversity_10.txt",
     },
 ]
 
@@ -365,18 +365,18 @@ def run_pipeline(sources: list[dict] = SOURCES) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    # chunks = run_pipeline()
-    with open("data/chunks.json", "r", encoding="utf-8") as fh:
-        chunks = json.load(fh)
+    chunks = run_pipeline()
+    # with open("data/chunks.json", "r", encoding="utf-8") as fh:
+    #     chunks = json.load(fh)
         
     # Quick preview
-    # print("\n--- Sample chunks ---")
-    # for chunk in chunks[:3]:
-    #     print(
-    #         f"\n[{chunk['chunk_id']}] {chunk['source_name']} | {chunk['description']}"
-    #     )
-    #     print(f"  chars: {len(chunk['text'])}")
-    #     print(f"  text:  {chunk['text'][:120]}…")
+    print("\n--- Sample chunks ---")
+    for chunk in chunks[:3]:
+        print(
+            f"\n[{chunk['chunk_id']}] {chunk['source_name']} | {chunk['description']}"
+        )
+        print(f"  chars: {len(chunk['text'])}")
+        print(f"  text:  {chunk['text'][:120]}…")
 
     # Print 5 representative chunks
     # import random
@@ -386,8 +386,8 @@ if __name__ == "__main__":
     #     print(f"  {chunk['text']}")
 
     # Optionally persist to JSON for inspection / hand-off to next pipeline stage
-    # out_path = Path("data/chunks.json")
-    # out_path.parent.mkdir(parents=True, exist_ok=True)
-    # with open(out_path, "w", encoding="utf-8") as fh:
-    #     json.dump(chunks, fh, ensure_ascii=False, indent=2)
-    # print(f"\nChunks saved to {out_path}")
+    out_path = Path("data/chunks.json")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as fh:
+        json.dump(chunks, fh, ensure_ascii=False, indent=2)
+    print(f"\nChunks saved to {out_path}")

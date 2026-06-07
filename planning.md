@@ -1,7 +1,5 @@
 # Project 1 Planning: The Unofficial Guide
 
-> Write this document before you write any pipeline code.
-> Your spec and architecture diagram are what you'll use to direct AI tools (Claude, Copilot, etc.) to generate your implementation — the more specific they are, the more useful the generated code will be.
 > Update the Retrieval Approach and Chunking Strategy sections if you change your approach during implementation.
 > Update this file before starting any stretch features.
 
@@ -112,7 +110,7 @@ If cost wasn't a constraint, I would consider a model trained on specialized dat
 5. I will use Claude for a Groq interface to input the 5 test questions I wrote above requiring it to answer questions as a helpful campus dining assistance, asking it to cite its sources and respond with "I don't have that information" if it can't find references for a query.
 
 **Milestone 3 — Ingestion and chunking:**
-<!--
+
 5 representative chunks:
 
 [7_24] BruinLife — Top 5 best and worst foods at UCLA dining halls
@@ -147,22 +145,22 @@ The dining hall food is amazing
 
 My family/cousin’s Wouks visit me just so I can swipe them for Sunday lunch/dinner
 
-Used to be excellent before COVID I hear, but it's kinda mid now imo -->
+Used to be excellent before COVID I hear, but it's kinda mid now imo
 
-## Total Chunks: 141
+## Total Chunks: 162
 
 **Milestone 4 — Embedding and retrieval:**
-<!-- 
+
 Query: 'What options are there for vegetarian students?'
 Top 5 results (hybrid BM25 + ChromaDB):
 
   [1] Reddit — UCLA Dining wiki  (rrf=0.0325)
        url:  https://www.reddit.com/r/ucla/wiki/ucladining/
-       text: **BPlate**: “Healthy” food. People either love it or hate it. Portions are generally smaller with lots of vegan/vegetarian options. Many like the kale vinaigrette, zucchini brownies, and salmon. Some people bash it for being too healthy but you gotta experiment with dressings, seasonings, etc to really get the good stuff. They have the best quality salmon and some top tier meats. Popular for weekend brunch with usually the longest omelet line. Allergen-friendly pantry at the back for students who need it.
+       text: BPlate: “Healthy” food. People either love it or hate it. Portions are generally smaller with lots of vegan/vegetarian options. Many like the kale vinaigrette, zucchini brownies, and salmon. Some people bash it for being too healthy but you gotta experiment with dressings, seasonings, etc to really get the good stuff. They have the best quality salmon and some top tier meats. Popular for weekend brunch with usually the longest omelet line. Allergen-friendly pantry at the back for students who need it.
 
 
 
-## To-Go Options
+To-Go Options
 
   [2] Reddit — Comprehensive dining hall ranking  (rrf=0.0310)
        url:  https://www.reddit.com/r/ucla/comments/rvo8oo/comprehensive_dining_hall_ranking/
@@ -217,9 +215,9 @@ You can’t select a housing plan without a meal plan. The number means how many
 
 
 
-## Meal periods
+Meal periods
 
-**Weekdays**
+Weekdays
 
 * 7am-11am: Breakfast
 
@@ -231,7 +229,7 @@ You can’t select a housing plan without a meal plan. The number means how many
 
 * 12am-2am: Late late night
 
-**Weekends**
+Weekends
 
 * 7am-9am: Continental breakfast
 
@@ -241,7 +239,7 @@ You can’t select a housing plan without a meal plan. The number means how many
        url:  https://www.reddit.com/r/ucla/wiki/ucladining/
        text: * 12am-2am: Late late night
 
-**Weekends**
+Weekends
 
 * 7am-9am: Continental breakfast
 
@@ -255,7 +253,7 @@ You can’t select a housing plan without a meal plan. The number means how many
 
 
 
-## Meal plan options
+Meal plan options
 *Listed by decreasing cost*
 
 19P → 19 meals per week for you to use however. They roll over each week, but not each quarter
@@ -303,7 +301,7 @@ most people i know think epicuria is the best so that's def a popular opinion
        url:  https://www.reddit.com/r/ucla/wiki/ucladining/
        text: ### Menus for To-Go Options
 
-**Rende**: Rende East is East Asian fast food while Rende West is Mexican fast food. West has the best burritos ever, there are customizable ones or you can choose from a menu. And there’s impossible meat for the vegetarians out there. There's usually a super long line but overall it doesn’t take too long. East is basically panda express. It offers boba, though it can be a bit hard. DO NOT get the pad thai, it's just an orange glob.
+Rende: Rende East is East Asian fast food while Rende West is Mexican fast food. West has the best burritos ever, there are customizable ones or you can choose from a menu. And there’s impossible meat for the vegetarians out there. There's usually a super long line but overall it doesn’t take too long. East is basically panda express. It offers boba, though it can be a bit hard. DO NOT get the pad thai, it's just an orange glob.
 
   [3] DailyBruin — Schedule changes to strikes - student dining experiences  (rrf=0.0311)
        url:  https://dailybruin.com/2025/06/08/from-schedule-changes-to-strikes-students-discuss-ucla-dining-experiences
@@ -315,7 +313,7 @@ UCLA Dining also changed its website at the beginning of spring quarter. UCLA Ho
        url:  https://www.reddit.com/r/ucla/wiki/ucladining/
        text: ## To-Go Options
 
-### General Notes
+General Notes
 * All To-Go Places have “meal combos” that equal one swipe. Typically, this includes one entree (i.e. sandwich, mini pizza, etc), one side (chips, whole fruit), and a drink.
 * Specialty beverages (i.e. specialty coffee beverages, smoothies) usually include a pastry for one swipe (not always though).
 * Most To-Go Places have tables within the restaurant that allow you to eat there. As the name suggests, you can also take your food out of the restaurant and eat at other places.
@@ -323,14 +321,20 @@ UCLA Dining also changed its website at the beginning of spring quarter. UCLA Ho
   [5] Reddit — Comprehensive dining hall ranking  (rrf=0.0294)
        url:  https://www.reddit.com/r/ucla/comments/rvo8oo/comprehensive_dining_hall_ranking/
        text: 6. B CAFE
-Okay, so it's not that I dislike b cafe....I want to like it. But I wish the sandwiches were a little more customizable. There's only one vegetarian sandwich, and I personally don't love the cookies as of late. I also don't like how much sauce goes into them sometimes, although I know most people aren't bothered by sauce on their food. The lines are often too long for what you get, but it's good for the occasional sandwich craving. -->
+Okay, so it's not that I dislike b cafe....I want to like it. But I wish the sandwiches were a little more customizable. There's only one vegetarian sandwich, and I personally don't love the cookies as of late. I also don't like how much sauce goes into them sometimes, although I know most people aren't bothered by sauce on their food. The lines are often too long for what you get, but it's good for the occasional sandwich craving.
 
 **Milestone 5 — Generation and interface:**
-<!-- Loading embedding model: all-MiniLM-L6-v2
+
+Loading embedding model: all-MiniLM-L6-v2
 Connecting to ChromaDB at: data/chroma_db
 Loading BM25 index from data/bm25_index.pkl
 ✓ HybridRetriever ready
 
+"Are dishes properly labeled for food allergens?"
 ('No', '• DailyBruin — Opinion: dietary restrictions deserve accurate info (https://dailybruin.com/2026/01/20/opinion-students-with-dietary-restrictions-deserve-accurate-information-from-ucla-dining)\n• BruinLife — Top 5 best and worst foods at UCLA dining halls (https://bruinlife.com/top-5-best-and-worst-foods-at-the-ucla-dining-halls/)\n• Reddit — Gluten intolerant dining (https://www.reddit.com/r/ucla/comments/15v0jh7/how_rough_is_dining_if_you_are_gluten_intolerant/)')
+
+"Can I take food to go from the dining halls?"
 ('No, all food must be consumed within the dining hall, although you are allowed to take out one whole fruit or dessert.', '• Reddit — UCLA Dining wiki (https://www.reddit.com/r/ucla/wiki/ucladining/)\n• Reddit — Meals as a commuter (https://www.reddit.com/r/ucla/comments/1kl3qwz/meals_as_a_commuter/)')
-("I don't have enough information to answer that.", '• BruinLife — Top 5 best and worst foods at UCLA dining halls (https://bruinlife.com/top-5-best-and-worst-foods-at-the-ucla-dining-halls/)\n• Reddit — Meals as a commuter (https://www.reddit.com/r/ucla/comments/1kl3qwz/meals_as_a_commuter/)\n• Reddit — Gluten intolerant dining (https://www.reddit.com/r/ucla/comments/15v0jh7/how_rough_is_dining_if_you_are_gluten_intolerant/)') -->
+
+"What is the cost of a salad?"
+("I don't have enough information to answer that.", '• BruinLife — Top 5 best and worst foods at UCLA dining halls (https://bruinlife.com/top-5-best-and-worst-foods-at-the-ucla-dining-halls/)\n• Reddit — Meals as a commuter (https://www.reddit.com/r/ucla/comments/1kl3qwz/meals_as_a_commuter/)\n• Reddit — Gluten intolerant dining (https://www.reddit.com/r/ucla/comments/15v0jh7/how_rough_is_dining_if_you_are_gluten_intolerant/)')
